@@ -59,9 +59,19 @@
 }
 
 .list-group-item {
+  @import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+  font-family: "Quicksand", sans-serif;
   border: none;
 }
 
 .remove-item {
   cursor: pointer;
+}
+
+.todo-completed {
+  background-color: #e6ecf5;
+  opacity: 0.7;
+  -webkit-transform: scale(0.9);
+      -ms-transform: scale(0.9);
+          transform: scale(0.9);
 }

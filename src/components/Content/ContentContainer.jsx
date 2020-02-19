@@ -9,7 +9,6 @@ import auchanLogo from './../../assets/images/auchan.png';
 import velmartLogo from './../../assets/images/velmart.png';
 import silpoLogo from './../../assets/images/silpo.png';
 import novusLogo from './../../assets/images/novus.png';
-import Preloader from './../common/Preloader';
 
 
 class ContentContainer extends React.Component {

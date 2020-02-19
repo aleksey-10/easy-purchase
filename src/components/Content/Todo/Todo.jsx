@@ -10,7 +10,7 @@ let Todo = props => {
             saveToLSAC={props.saveToLSAC} clearTodoListAC={props.clearTodoListAC}
             onSubmitTodoAC={props.onSubmitTodoAC} />
         {
-            !props.market.length ? <h1 className="display-4">No todos yet!</h1>
+            !props.market.length ? <h1 className="display-4">No todos</h1>
                 : <TodoList market={props.market} marketName={props.marketName} />
         }
     </div>
