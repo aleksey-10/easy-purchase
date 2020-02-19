@@ -1,0 +1,11 @@
+import { connect } from "react-redux";
+import TodoItem from './TodoItem';
+import { removeTodoAC, saveToLSAC } from "../../../../../redux/marketsReducer";
+
+let mapStateToProps = (state, ownProps) => ({
+    market: state.markets[ownProps.marketName],
+    marketName: ownProps.marketName,
+    todo: ownProps.todo
+})
+
+export default connect(mapStateToProps, {removeTodoAC, saveToLSAC})(TodoItem);

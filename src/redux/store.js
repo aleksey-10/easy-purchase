@@ -1,9 +1,10 @@
 import { createStore, combineReducers } from "redux";
 import marketsReducer from "./marketsReducer";
-import storageReducer from './storageReducer';
+import inputReducer from './inputReducer';
 
 const reducers = combineReducers({
-    markets: marketsReducer
+    markets: marketsReducer,
+    input: inputReducer
 })
 
 const store = createStore(reducers);

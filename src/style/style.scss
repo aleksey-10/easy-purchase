@@ -1,3 +1,5 @@
+@import './preloader.scss';
+
 .logo {
     max-width: 100px;
 }
@@ -18,4 +20,12 @@
 
 .form {
     margin: 10px 0;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.remove-item {
+    cursor: pointer;
 }
