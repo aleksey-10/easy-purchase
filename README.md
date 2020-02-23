@@ -6,3 +6,5 @@ Technologies used in this project:
 1. React JS
 2. Redux 
 3. SCSS, Bootstrap (for styling components)
+
+<small>All data is stored on the server (Firebase database).</small>
