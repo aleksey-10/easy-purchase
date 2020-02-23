@@ -5,7 +5,7 @@ import TodoContainer from './Todo/TodoContainer';
 let Content = props => {
     return (
         <div className="home">
-            <Header title={props.title} bgColorClass={props.bgColorClass} logo={props.logo}/>
+            <Header market={props.market} bgColorClass={props.bgColorClass} logo={props.logo}/>
             <TodoContainer market={props.market} />
         </div>
     )

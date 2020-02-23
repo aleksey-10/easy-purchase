@@ -1,12 +1,16 @@
+
 import { connect } from "react-redux";
 import Todo from './Todo';
-import { addItemAC, saveToLSAC, clearTodoListAC } from "../../../redux/marketsReducer";
+import { addTodo, removeTodo, calcSum, setCompletedAll } from "../../../redux/marketsReducer";
 import { onChangeAC, onSubmitTodoAC } from "../../../redux/inputReducer";
+
 
 let mapStateToProps = (state, ownProps) => ({
     marketName: ownProps.market,
     market: state.markets[ownProps.market],
+    markets: state.markets,
     input: state.input
 });
+
 export default connect(mapStateToProps, 
-    { addItemAC, saveToLSAC, onChangeAC, clearTodoListAC, onSubmitTodoAC })(Todo);
+    {  onChangeAC, removeTodo, onSubmitTodoAC, calcSum, addTodo, setCompletedAll})(Todo);

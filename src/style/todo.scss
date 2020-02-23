@@ -1,0 +1,38 @@
+.list-group-item {
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+    font-family: 'Quicksand', sans-serif;
+    border: none;
+
+    transition: all 0.25s;
+}
+
+.remove-item {
+    cursor: pointer;
+    opacity: 0.7;
+    color: maroon;
+}
+
+.todo-completed {
+    background-color: lighten(lightsteelblue, 15%) !important;
+    opacity: 0.7;
+    transform: scale(0.9);
+}
+
+
+.note-exit-active{
+    animation: todo 0.5s ease-out forwards;
+}
+
+@keyframes todo {
+    0% {
+        transform: translateX(0);
+    }
+
+    30% {
+        transform: translateX(25px);
+    }
+
+    100% {
+        transform: translateX(-200px);
+    }
+}

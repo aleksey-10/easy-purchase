@@ -1,65 +1,65 @@
-const ADD_ITEM = 'ADD-ITEM';
-const SAVE_TO_LS = 'SAVE-TO-LOCAL-STORAGE';
-const SET_TODOS = 'SET-TODOS';
-const CLEAR_TODO_LIST = 'CLEAR-TODO-LIST';
-const REMOVE_TODO = 'REMOVE-TODO';
-const SET_TODO_ID = 'SET-TODO-ID';
-const SET_TODO_COMPLETED = 'SET-TODO-COMPLETED';
+import todoAPI from "../api/api";
+
+const ADD_TODO = 'ADD_TODO';
+const SAVE_TO_LS = 'SAVE_TO_LOCAL_STORAGE';
+const SET_TODOS = 'SET_TODOS';
+const CLEAR_TODO_LIST = 'CLEAR_TODO_LIST';
+const REMOVE_TODO = 'REMOVE_TODO';
+const SET_TODO_ID = 'SET_TODO_ID';
+const SET_TODO_COMPLETED = 'SET_TODO_COMPLETED';
+const CALC_SUM = 'CALC_SUM';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
+const COMPLETED_ALL = 'COMPLETED_ALL';
 
 const initState = {
     auchan: [],
     velmart: [],
-    silpo: [],
     novus: [],
-    other: []
+    silpo: [],
+    fair: [],
+    other: [],
+    fetching: true
 }
 
-const marketsReducer = (prevState = initState, action) => {
+const marketsReducer = (state = initState, action) => {
     switch (action.type) {
         case SET_TODOS:
-            if (localStorage.getItem('todos') === null) {
-                localStorage.setItem('todos', JSON.stringify(prevState));
-                return prevState;
+            return {
+                ...state,
+                ...action.markets
             }
 
-            return JSON.parse(localStorage.getItem('todos'));
-
-        case ADD_ITEM:
+        case ADD_TODO:
             return {
-                ...prevState,
+                ...state,
                 [action.marketName]: [
-                    ...prevState[action.marketName],
-                    {
-                        id: prevState[action.marketName].length,
-                        title: action.title,
-                        value: action.value,
-                        completed: false
-                    }
+                    ...state[action.marketName],
+                    action.todo
                 ]
             }
 
         case SAVE_TO_LS:
-            localStorage.setItem('todos', JSON.stringify(prevState));
+            localStorage.setItem('todos', JSON.stringify(state));
 
-            return prevState;
+            return state;
 
         case CLEAR_TODO_LIST:
             return {
-                ...prevState,
+                ...state,
                 [action.marketName]: []
             }
 
         case REMOVE_TODO:
             return {
-                ...prevState,
-                [action.marketName]: prevState[action.marketName]
+                ...state,
+                [action.marketName]: state[action.marketName]
                     .filter(todo => todo.id !== action.id)
             }
 
         case SET_TODO_ID:
             return {
-                ...prevState,
-                [action.marketName]: prevState[action.marketName].map((todo, index) => {
+                ...state,
+                [action.marketName]: state[action.marketName].map((todo, index) => {
                     todo.id = index;
                     return todo;
                 })
@@ -67,8 +67,8 @@ const marketsReducer = (prevState = initState, action) => {
 
         case SET_TODO_COMPLETED:
             return {
-                ...prevState,
-                [action.marketName]: prevState[action.marketName].map(todo => {
+                ...state,
+                [action.marketName]: state[action.marketName].map(todo => {
                     if (todo.id === action.id) {
                         todo.completed = !todo.completed;
                     }
@@ -76,20 +76,88 @@ const marketsReducer = (prevState = initState, action) => {
                 })
             }
 
+        case CALC_SUM:
+            alert(state[action.marketName].reduce((sum, item) => sum + +item.value, 0));
+
+            return state;
+
+        case TOGGLE_FETCHING:
+            return { ...state, fetching: !state.fetching }
+
+        case COMPLETED_ALL:
+            return {
+                ...state,
+                [action.marketName]: state[action.marketName].map(todo => {
+                    todo.completed = action.completed;
+                    return todo;
+                })
+            }
+
 
         default:
-            return prevState;
+            return state;
     }
 }
 
 export default marketsReducer;
 
-export let addItemAC = (marketName, title, value) =>
-    ({ type: ADD_ITEM, marketName, title, value })
+export let addTodoAC = (marketName, todo) => ({ type: ADD_TODO, marketName, todo })
 export let saveToLSAC = () => ({ type: SAVE_TO_LS })
-export let setTodosAC = () => ({ type: SET_TODOS })
+export let setTodoAC = (markets) => ({ type: SET_TODOS, markets })
 export let clearTodoListAC = marketName => ({ type: CLEAR_TODO_LIST, marketName })
 export let removeTodoAC = (marketName, id) => ({ type: REMOVE_TODO, marketName, id })
-export let setTodoIdAC = marketName => ({ type: SET_TODO_ID, marketName })
 export let setTodoCompletedAC = (marketName, id) =>
     ({ type: SET_TODO_COMPLETED, marketName, id })
+export let calcSum = marketName => ({ type: CALC_SUM, marketName })
+export let toggleFetching = () => ({ type: TOGGLE_FETCHING })
+export let toggleCompleteAll = (marketName, completed) => ({ type: COMPLETED_ALL, marketName, completed })
+
+export const setTodos = () => dispatch => {
+    todoAPI.getTodos().then(data => {
+        if (data !== null) {
+
+            const payload = {};
+
+            for (let marketName in data) {
+                payload[marketName] = Object.keys(data[marketName]).map(key => ({
+                    ...data[marketName][key],
+                    id: key
+                }))
+            }
+
+            dispatch(setTodoAC(payload));
+        }
+
+        dispatch(toggleFetching());
+    });
+}
+
+export const addTodo = (marketName, title, value) => dispatch => {
+    todoAPI.postTodo(marketName, title, value)
+        .then(data => {
+            dispatch(addTodoAC(marketName, { title, value, id: data.name, completed: false }))
+        })
+}
+
+export const removeTodo = (marketName, id = '') => dispatch => {
+    todoAPI.deleteTodo(marketName, id);
+
+    !id ? dispatch(clearTodoListAC(marketName)) : dispatch(removeTodoAC(marketName, id));
+}
+
+export const setCompleted = (marketName, todo) => dispatch => {
+    todoAPI.toggleCompleted(marketName, todo.id, !todo.completed)
+
+    dispatch(setTodoCompletedAC(marketName, todo.id))
+}
+
+export const setCompletedAll = (marketName, market) => dispatch => {
+
+    let allCompleted = market.filter(todo => !todo.completed).length;
+
+    dispatch(toggleCompleteAll(marketName, allCompleted));
+
+    market.map(todo => {
+        todoAPI.toggleCompleted(marketName, todo.id, allCompleted)
+    })
+}

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 let Header = props => {
     return (
         <nav className={`navbar navbar-expand ${props.bgColorClass}`}>
-            <NavLink className="navbar-brand" to="/">{props.logo}</NavLink>
+            <NavLink className="navbar-brand" to={`/${props.market}`}>{props.logo}</NavLink>
             
                 <div className="navbar-nav ml-auto">
                     <div className="nav-item dropdown">
@@ -15,6 +15,7 @@ let Header = props => {
                             <NavLink className="dropdown-item " to="/velmart">Velmart</NavLink>
                             <NavLink className="dropdown-item " to="/silpo">Silpo</NavLink>
                             <NavLink className="dropdown-item " to="/novus">Novus</NavLink>
+                            <NavLink className="dropdown-item " to="/fair">Ярмарка</NavLink>
                             <NavLink className="dropdown-item " to="/other">Other</NavLink>
                         </div>
                     </div>

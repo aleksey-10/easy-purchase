@@ -1,4 +1,4 @@
-@import './preloader.scss';
+@import './todo.scss';
 
 .logo {
     max-width: 100px;
@@ -20,20 +20,4 @@
 
 .form {
     margin: 10px 0;
-}
-
-.list-group-item {
-    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
-    font-family: 'Quicksand', sans-serif;
-    border: none;
-}
-
-.remove-item {
-    cursor: pointer;
-}
-
-.todo-completed {
-    background-color: lighten(lightsteelblue, 15%);
-    opacity: 0.7;
-    transform: scale(0.9);
 }
