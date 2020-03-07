@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import TodoItem from './TodoItem';
-import { removeTodo, setCompleted } from "../../../../../redux/marketsReducer";
+import { removeTodo, setCompleted, editTodo } from "../../../../../redux/marketsReducer";
 
 
 let mapStateToProps = (state, ownProps) => ({
@@ -11,4 +11,4 @@ let mapStateToProps = (state, ownProps) => ({
 })
 
 export default connect(mapStateToProps,
-    { removeTodo, setCompleted })(TodoItem);
+    { removeTodo, setCompleted, editTodo })(TodoItem);

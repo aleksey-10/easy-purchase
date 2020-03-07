@@ -13,7 +13,7 @@ export default ({props}) => {
                 value={props.input.form.title}
                 onChange={event => props.onChangeAC('title', event.target.value)} />
 
-            <input type="number" className="form-control col-2" placeholder="Value"
+            <input type="number" className="form-control col-2" placeholder="Value" min="0"
                 value={props.input.form.value}
                 onChange={event => props.onChangeAC('value', event.target.value)} />
 

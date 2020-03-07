@@ -20,6 +20,12 @@ const todoAPI = {
 
     toggleCompleted(marketName, id, completed) {
         return instance.put(`markets/${marketName}/${id}/completed.json`, completed  )
+    },
+
+    editTodo(marketName, id, data) {
+        const dataName = Object.keys(data)[0];
+        
+        return instance.put(`markets/${marketName}/${id}/${dataName}.json`, JSON.stringify(data[dataName]) )
     }
 };
 

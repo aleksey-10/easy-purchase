@@ -10,6 +10,7 @@ const SET_TODO_COMPLETED = 'SET_TODO_COMPLETED';
 const CALC_SUM = 'CALC_SUM';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 const COMPLETED_ALL = 'COMPLETED_ALL';
+const EDIT_TODO_AC = 'EDIT_TODO_AC';
 
 const initState = {
     auchan: [],
@@ -93,6 +94,14 @@ const marketsReducer = (state = initState, action) => {
                 })
             }
 
+        case EDIT_TODO_AC:
+            return {
+                ...state,
+                [action.marketName]: state[action.marketName].map(todo => {
+                    if (action.id === todo.id) todo = {...todo, ...action.data}
+                    return todo
+                })
+            }
 
         default:
             return state;
@@ -110,7 +119,8 @@ export let setTodoCompletedAC = (marketName, id) =>
     ({ type: SET_TODO_COMPLETED, marketName, id })
 export let calcSum = marketName => ({ type: CALC_SUM, marketName })
 export let toggleFetching = () => ({ type: TOGGLE_FETCHING })
-export let toggleCompleteAll = (marketName, completed) => ({ type: COMPLETED_ALL, marketName, completed })
+export let toggleCompleteAll = (marketName, completed) => ({ type: COMPLETED_ALL, marketName, completed });
+let editTodoAC = (marketName, id, data) => ({ type: EDIT_TODO_AC, marketName, id, data })
 
 export const setTodos = () => dispatch => {
     todoAPI.getTodos().then(data => {
@@ -160,4 +170,10 @@ export const setCompletedAll = (marketName, market) => dispatch => {
     market.map(todo => {
         todoAPI.toggleCompleted(marketName, todo.id, allCompleted)
     })
+}
+
+export const editTodo = (marketName, id, data) => dispatch => {
+    todoAPI.editTodo(marketName, id, data)
+
+    dispatch(editTodoAC(marketName, id, data))
 }

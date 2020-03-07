@@ -9,6 +9,7 @@ import auchanLogo from './../../assets/images/auchan.png';
 import velmartLogo from './../../assets/images/velmart.png';
 import silpoLogo from './../../assets/images/silpo.png';
 import novusLogo from './../../assets/images/novus.png';
+import { compose } from 'redux';
 
 
 class ContentContainer extends React.Component {
@@ -49,4 +50,7 @@ let mapStateToProps = state => ({
     markets: state.markets
 })
 
-export default connect(mapStateToProps, {setTodos})(withRouter(ContentContainer));
+export default compose(
+    connect(mapStateToProps, {setTodos}),
+    withRouter
+) (ContentContainer);
