@@ -1,10 +1,13 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Easy purchase APP
+[DEMO LINK](https://aleksey-10.github.io/easy-purchase/)
 
-<a href="https://aleksey-10.github.io/easy-purchase/">DEMO</a>
+## Tech stack
+- HTML/SCSS/JS
+- React, Redux, Bootstrap
+- Axios
 
-Technologies used in this project:
-1. React JS
-2. Redux 
-3. SCSS, Bootstrap (for styling components)
+## Install
+npm install
 
-<small>All data is stored on the server (Firebase database).</small>
+## Run
+npm start
