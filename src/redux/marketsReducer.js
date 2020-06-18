@@ -18,7 +18,6 @@ const initState = {
     novus: [],
     silpo: [],
     fair: [],
-    other: [],
     fetching: true
 }
 
@@ -167,9 +166,9 @@ export const setCompletedAll = (marketName, market) => dispatch => {
 
     dispatch(toggleCompleteAll(marketName, allCompleted));
 
-    market.map(todo => {
+    market.map(todo => (
         todoAPI.toggleCompleted(marketName, todo.id, allCompleted)
-    })
+    ))
 }
 
 export const editTodo = (marketName, id, data) => dispatch => {

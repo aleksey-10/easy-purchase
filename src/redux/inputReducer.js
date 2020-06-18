@@ -4,7 +4,7 @@ const ON_SUBMIT_TODO = 'ON-SUBMIT-TODO';
 const initState = {
     form: {
         title: '',
-        value: 0
+        value: 0,
     }
 
 }
