@@ -1,51 +1,63 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import AdditionalActions from './AdditionalActions/AdditionalActions';
 
-export default ({props}) => {
-    return (
-        <form className="form row justify-content-around"
-            onSubmit={event => {
-                event.preventDefault();
-                props.addTodo(props.marketName, props.input.form.title, props.input.form.value);
-                props.onSubmitTodoAC();
-        }}>
-            <input
-                type="text"
-                className="form-control col"
-                placeholder="Product"
-                value={props.input.form.title}
-                onChange={event => props.onChangeAC('title', event.target.value)}
-                required
-            />
+export default ({
+    addTodo,
+    input,
+    onSubmitTodoAC,
+    marketName,
+    onChangeAC,
+    removeTodo,
+    saveToLSAC,
+    market,
+    calcSum,
+    setCompletedAll,
+  }) => {
+  const handleSubmit = useCallback((event) => {
+    event.preventDefault();
+    addTodo(marketName, input.form.title, input.form.value);
+    onSubmitTodoAC();
+  }, [addTodo, onSubmitTodoAC, input, marketName]);
 
-            <input
-                type="number"
-                className="form-control col-2"
-                placeholder="Value"
-                min="0"
-                value={props.input.form.value || ''}
-                onChange={event => props.onChangeAC('value', event.target.value)}
-            />
+  return (
+    <form className="form row justify-content-around" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="form-control col"
+        placeholder="Product"
+        value={input.form.title}
+        onChange={event => onChangeAC('title', event.target.value)}
+        required
+      />
 
-            <button
-                type="button"
-                className="form-control col-2 col-md-1 btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-            >
-                <span className="sr-only">Toggle Dropdown</span>
-            </button>
+      <input
+        type="number"
+        className="form-control col-2"
+        placeholder="Value"
+        min="0"
+        value={input.form.value || ''}
+        onChange={event => onChangeAC('value', event.target.value)}
+      />
 
-            <AdditionalActions
-                removeTodo={props.removeTodo}
-                saveToLSAC={props.saveToLSAC}
-                marketName={props.marketName}
-                market={props.market}
-                calcSum={props.calcSum}
-                setCompletedAll={props.setCompletedAll}
-            />
-        </form>
+      <button
+        type="button"
+        className="form-control col-2 col-md-1 btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <span className="sr-only">Toggle Dropdown</span>
+      </button>
 
-    )
+      <AdditionalActions
+        removeTodo={removeTodo}
+        saveToLSAC={saveToLSAC}
+        marketName={marketName}
+        market={market}
+        calcSum={calcSum}
+        setCompletedAll={setCompletedAll}
+      />
+    </form>
+
+  )
 }

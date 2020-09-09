@@ -4,7 +4,7 @@ import TodoListContainer from './TodoList/TodoListContainer';
 
 let Todo = props => {
     return <div className="market-content container">
-        <Form props={props} />
+        <Form {...props} />
 
         <TodoListContainer market={props.market} marketName={props.marketName} />
     </div>
