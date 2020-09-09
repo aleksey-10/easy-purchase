@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Content from './Content';
-import Home from './Home/Home';
 import { setTodos } from './../../redux/marketsReducer';
 
 import auchanLogo from './../../assets/images/auchan.png';
@@ -17,30 +16,52 @@ class ContentContainer extends React.Component {
         this.props.setTodos();
     }
 
-    render() {
-        let createImg = (path, title) => <img className="logo" src={path} alt={title} />
+    createImg = (path, title) => (
+        <img className="logo" src={path} alt={title} />
+    )
 
+    render() {
         switch (this.props.match.params.market) {
             case 'auchan':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-dark bg-danger" logo={createImg(auchanLogo, 'Auchan')} />;
+                return (
+                    <Content
+                        market={this.props.match.params.market}
+                        bgColorClass="navbar-dark bg-danger"
+                        logo={this.createImg(auchanLogo, 'Auchan')}
+                    />
+                );
             case 'velmart':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-light bg-light" logo={createImg(velmartLogo, 'Velmart')} />;
+                return (
+                    <Content
+                        market={this.props.match.params.market}
+                        bgColorClass="navbar-light bg-light"
+                        logo={this.createImg(velmartLogo, 'Velmart')}
+                    />
+                );
             case 'silpo':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-light bg-warning" logo={createImg(silpoLogo, 'Silpo')} />;
-            case 'novus':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-dark bg-success" logo={createImg(novusLogo, 'Novus')} />;
+                return (
+                    <Content
+                        market={this.props.match.params.market}
+                        bgColorClass="navbar-light bg-warning"
+                        logo={this.createImg(silpoLogo, 'Silpo')}
+                    />
+                );
             case 'fair':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-dark bg-secondary" logo="ЯРМАРКА" />
-            case 'other':
-                return <Content market={this.props.match.params.market}
-                    bgColorClass="navbar-dark bg-dark" logo="" />;
+                return (
+                    <Content
+                        market={this.props.match.params.market}
+                        bgColorClass="navbar-dark bg-secondary"
+                        logo="MARKET"
+                    />
+                )
             default:
-                return <Home />
+                return (
+                    <Content
+                        market={'novus'}
+                        bgColorClass="navbar-dark bg-success"
+                        logo={this.createImg(novusLogo, 'Novus')}
+                    />
+                );
         }
 
     }

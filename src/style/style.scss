@@ -1,5 +1,9 @@
 @import './todo.scss';
 
+.App {
+    font-family: 'Noto Sans', sans-serif;
+}
+
 .logo {
     max-width: 100px;
 }
@@ -14,10 +18,10 @@
     }
 }
 
-.form-control, .list-group {
-    margin: 5px;
+.form {
+    padding-top: 30px;
 }
 
-.form {
-    margin: 10px 0;
+.form-control, .list-group {
+    padding: 20px;
 }

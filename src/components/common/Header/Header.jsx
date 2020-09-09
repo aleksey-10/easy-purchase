@@ -12,11 +12,10 @@ let Header = props => {
                             Show markets   </NavLink>
                         <div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <NavLink className="dropdown-item" to="/auchan">Auchan</NavLink>
-                            <NavLink className="dropdown-item " to="/velmart">Velmart</NavLink>
-                            <NavLink className="dropdown-item " to="/silpo">Silpo</NavLink>
-                            <NavLink className="dropdown-item " to="/novus">Novus</NavLink>
-                            <NavLink className="dropdown-item " to="/fair">Ярмарка</NavLink>
-                            <NavLink className="dropdown-item " to="/other">Other</NavLink>
+                            <NavLink className="dropdown-item" to="/velmart">Velmart</NavLink>
+                            <NavLink className="dropdown-item" to="/silpo">Silpo</NavLink>
+                            <NavLink className="dropdown-item" to="/novus">Novus</NavLink>
+                            <NavLink className="dropdown-item" to="/fair">Market</NavLink>
                         </div>
                     </div>
                 </div>

@@ -5,9 +5,11 @@ import ContentContainer from './components/Content/ContentContainer';
 
 function App() {
   return (
-    <HashRouter>
-      <Route path="/:market?" component={ContentContainer} />
-    </HashRouter>
+    <div className="App">
+      <HashRouter>
+        <Route path="/:market?" component={ContentContainer} />
+      </HashRouter>
+    </div>
   );
 }
 
