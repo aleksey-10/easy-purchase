@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "bf0bbedb3d66b5b86b6dcb75acce8572",
+    "revision": "32ef984624205900a6c86bfaea5888dd",
     "url": "/easy-purchase/index.html"
   },
   {
-    "revision": "8e6eeca7d325c2e5a211",
-    "url": "/easy-purchase/static/css/main.08540b0e.chunk.css"
+    "revision": "05ca667638b1433add6a",
+    "url": "/easy-purchase/static/css/main.e05187fc.chunk.css"
   },
   {
-    "revision": "d262a602a24590de26d5",
-    "url": "/easy-purchase/static/js/2.f0c78a9a.chunk.js"
+    "revision": "36c10596d677b3aa9bcd",
+    "url": "/easy-purchase/static/js/2.575b44f5.chunk.js"
   },
   {
-    "revision": "928d7b5eb39d16fe9a880722c974b51e",
-    "url": "/easy-purchase/static/js/2.f0c78a9a.chunk.js.LICENSE.txt"
+    "revision": "4ba1a1c11c57ed15aa68008707a3d6b4",
+    "url": "/easy-purchase/static/js/2.575b44f5.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "8e6eeca7d325c2e5a211",
-    "url": "/easy-purchase/static/js/main.ca6607f3.chunk.js"
+    "revision": "05ca667638b1433add6a",
+    "url": "/easy-purchase/static/js/main.b1dab1de.chunk.js"
   },
   {
     "revision": "1c5891ee5739168e84c4",
