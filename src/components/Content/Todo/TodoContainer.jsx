@@ -1,7 +1,7 @@
 
 import { connect } from "react-redux";
 import Todo from './Todo';
-import { addTodo, removeTodo, calcSum, setCompletedAll } from "../../../redux/marketsReducer";
+import { addTodo, removeTodo, setCompletedAll } from "../../../redux/marketsReducer";
 import { onChangeAC, onSubmitTodoAC } from "../../../redux/inputReducer";
 
 
@@ -13,4 +13,4 @@ let mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps, 
-    {  onChangeAC, removeTodo, onSubmitTodoAC, calcSum, addTodo, setCompletedAll})(Todo);
+    {  onChangeAC, removeTodo, onSubmitTodoAC, addTodo, setCompletedAll})(Todo);

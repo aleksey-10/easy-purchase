@@ -33,3 +33,24 @@
 .form {
     padding-top: 10px;
 }
+
+.toast {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 160px;
+
+    display: flex;
+    justify-content: space-between;
+
+    &__close {
+        font-size: 22px;
+        transition: transform 0.3s;
+
+        &:hover {
+            transform: rotate(360deg);
+        }
+    }
+}
