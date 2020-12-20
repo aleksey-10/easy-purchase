@@ -10,7 +10,6 @@ export default ({
     removeTodo,
     saveToLSAC,
     market,
-    calcSum,
     setCompletedAll,
   }) => {
   const handleSubmit = useCallback((event) => {
@@ -54,7 +53,6 @@ export default ({
         saveToLSAC={saveToLSAC}
         marketName={marketName}
         market={market}
-        calcSum={calcSum}
         setCompletedAll={setCompletedAll}
       />
     </form>

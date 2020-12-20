@@ -7,7 +7,6 @@ const CLEAR_TODO_LIST = 'CLEAR_TODO_LIST';
 const REMOVE_TODO = 'REMOVE_TODO';
 const SET_TODO_ID = 'SET_TODO_ID';
 const SET_TODO_COMPLETED = 'SET_TODO_COMPLETED';
-const CALC_SUM = 'CALC_SUM';
 const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 const COMPLETED_ALL = 'COMPLETED_ALL';
 const EDIT_TODO_AC = 'EDIT_TODO_AC';
@@ -76,11 +75,6 @@ const marketsReducer = (state = initState, action) => {
                 })
             }
 
-        case CALC_SUM:
-            alert(state[action.marketName].reduce((sum, item) => sum + +item.value, 0));
-
-            return state;
-
         case TOGGLE_FETCHING:
             return { ...state, fetching: !state.fetching }
 
@@ -116,7 +110,6 @@ export let clearTodoListAC = marketName => ({ type: CLEAR_TODO_LIST, marketName 
 export let removeTodoAC = (marketName, id) => ({ type: REMOVE_TODO, marketName, id })
 export let setTodoCompletedAC = (marketName, id) =>
     ({ type: SET_TODO_COMPLETED, marketName, id })
-export let calcSum = marketName => ({ type: CALC_SUM, marketName })
 export let toggleFetching = () => ({ type: TOGGLE_FETCHING })
 export let toggleCompleteAll = (marketName, completed) => ({ type: COMPLETED_ALL, marketName, completed });
 let editTodoAC = (marketName, id, data) => ({ type: EDIT_TODO_AC, marketName, id, data })
